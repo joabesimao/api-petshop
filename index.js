@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const config = require("config");
+const console = require("console");
 
 app.use(bodyParser.json());
-
-console.log(config.get("api.porta"));
 
 const PORTA = config.get("api.porta");
 
 app.listen(PORTA, () => console.log(`A API está rodando na porta ${PORTA}`));
+app.listen(config.get("api.porta"), () =>
+  console.log("A API ESTÁ FUNCIONANDO!")
+);
