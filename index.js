@@ -7,6 +7,6 @@ app.use(bodyParser.json());
 
 console.log(config.get("api.porta"));
 
-app.listen(config.get("api.porta"), () =>
-  console.log("A API ESTÁ FUNCIONANDO!")
-);
+const PORTA = config.get("api.porta");
+
+app.listen(PORTA, () => console.log(`A API está rodando na porta ${PORTA}`));
