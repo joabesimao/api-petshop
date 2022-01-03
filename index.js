@@ -14,5 +14,8 @@ const PORTA = config.get("api.porta");
 
 app.listen(PORTA, () => console.log(`A API está rodando na porta ${PORTA}`));
 //app.listen(config.get("api.porta"), () =>
-  //console.log("A API ESTÁ FUNCIONANDO!")
+//console.log("A API ESTÁ FUNCIONANDO!")
 //);
+
+// to nessa aula aqui =>
+// https://cursos.alura.com.br/course/nodejs-api-rest-padronizada-escalavel/task/79829
