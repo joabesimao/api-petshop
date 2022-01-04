@@ -13,4 +13,19 @@ roteador.post("/", async (requisicao, resposta) => {
   await fornecedor.criar();
   resposta.send(JSON.stringify(fornecedor));
 });
+
+roteador.get("/:idFornecedor", async (requisicao, resposta) => {
+  try {
+    const id = requisicao.params.idFornecedor;
+    const fornecedor = new Fornecedor({ id: id });
+    await fornecedor.carregar();
+    resposta.send(JSON.stringify(fornecedor));
+  } catch (erro) {
+    resposta.send(
+      JSON.stringify({
+        mensagem: erro.message,
+      })
+    );
+  }
+});
 module.exports = roteador;
