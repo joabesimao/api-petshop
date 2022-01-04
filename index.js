@@ -18,4 +18,5 @@ app.listen(PORTA, () => console.log(`A API está rodando na porta ${PORTA}`));
 //);
 
 // to nessa aula aqui =>
-// https://cursos.alura.com.br/course/nodejs-api-rest-padronizada-escalavel/task/79829
+
+//https://cursos.alura.com.br/course/nodejs-api-rest-padronizada-escalavel/task/79831
