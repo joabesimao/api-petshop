@@ -53,7 +53,7 @@ class Fornecedor {
     });
 
     if (Object.keys(dadosParaAtualizar).length === 0) {
-      throw new Error("NAO FORAM FORNECIDOS DADOS PARA ATUALIZAR");
+      throw new Error("não foram fornecidos dados para atualizar !");
     }
     await TabelaFornecedor.atualizar(this.id, dadosParaAtualizar);
   }
