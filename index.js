@@ -7,6 +7,7 @@ const roteador = require("./api/banco-de-dados/rotas/fornecedores");
 const NaoEncontrado = require("./api/erros/NaoEncontrado");
 const CampoInvalido = require("./api/erros/CampoInvalido");
 const DadosNaoFornecidos = require("./api/erros/DadosNaoFornecidos");
+const ValorNaoSuportado = require("./api/erros/ValorNaoSuportado");
 
 app.use(bodyParser.json());
 
@@ -20,6 +21,9 @@ app.use((erro, requisicao, resposta, proximo) => {
   }
   if (erro instanceof CampoInvalido || erro instanceof DadosNaoFornecidos) {
     status = 400;
+  }
+  if (erro instanceof ValorNaoSuportado) {
+    status = 406;
   }
   resposta.status(status);
 
