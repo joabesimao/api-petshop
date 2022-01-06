@@ -3,7 +3,7 @@ class CampoInvalido extends Error {
     const mensagem = `o campo ${campo} está invalido`;
     super(mensagem);
     this.name = "CampoInvalido";
-    this.idErro = 1;
+    this.idErro = 0;
   }
 }
 module.exports = CampoInvalido;
