@@ -5,7 +5,7 @@ const { raw } = require("body-parser");
 
 module.exports = {
   listar() {
-    return Modelo.findAll({raw:true});
+    return Modelo.findAll({ raw: true });
   },
   inserir(fornecedor) {
     return Modelo.create(fornecedor);

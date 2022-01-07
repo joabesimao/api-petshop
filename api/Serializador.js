@@ -22,7 +22,7 @@ class Serializador {
     });
     return novoObjeto;
   }
-  filtrar(dados) {
+  filtrar(dados) { 
     if (Array.isArray(dados)) {
       dados = dados.map((item) => {
         return this.filtrarObjeto(item);
