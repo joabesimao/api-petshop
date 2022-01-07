@@ -1,10 +1,11 @@
 const Modelo = require("./ModeloTabelaFornecedor");
 const NaoEncontrado = require("../../../erros/NaoEncontrado");
 const CampoInvalido = require("../../../erros/CampoInvalido");
+const { raw } = require("body-parser");
 
 module.exports = {
   listar() {
-    return Modelo.findAll();
+    return Modelo.findAll({raw:true});
   },
   inserir(fornecedor) {
     return Modelo.create(fornecedor);
