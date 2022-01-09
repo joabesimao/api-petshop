@@ -36,23 +36,19 @@ roteador.post("/", async (requisicao, resposta, proximo) => {
   }
 });
 
-roteador.get("/:idFornecedor", async (requisicao, resposta) => {
+roteador.get("/:idFornecedor", async (requisicao, resposta, proximo) => {
   try {
     const id = requisicao.params.idFornecedor;
     const fornecedor = new Fornecedor({ id: id });
     await fornecedor.carregar();
     resposta.status(200);
     const serializador = new SerializadorFornecedor(
-      resposta.getHeader("Content-Type")
+      resposta.getHeader("Content-Type"),
+      ["email", "dataCriacao", "dataAtualizacao", "versao"]
     );
     resposta.send(serializador.serializar(fornecedor));
   } catch (erro) {
-    resposta.status(404);
-    resposta.send(
-      JSON.stringify({
-        mensagem: erro.message,
-      })
-    );
+    proximo(erro);
   }
 });
 
