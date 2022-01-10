@@ -77,4 +77,8 @@ roteador.delete("/:idFornecedor", async (requisicao, resposta, proximo) => {
     proximo(erro);
   }
 });
+
+const roteadorProdutos = require("./produtos");
+roteador.use("/:idFornecedor/produtos", roteadorProdutos);
+
 module.exports = roteador;
