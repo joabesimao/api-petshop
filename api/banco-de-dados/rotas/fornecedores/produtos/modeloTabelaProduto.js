@@ -6,7 +6,7 @@ const colunas = {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  preço: {
+  preco: {
     type: Sequelize.DOUBLE,
     allowNull: false,
   },
