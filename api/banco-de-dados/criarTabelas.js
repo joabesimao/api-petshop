@@ -1,5 +1,13 @@
-const ModeloTabela = require("../banco-de-dados/rotas/fornecedores/ModeloTabelaFornecedor");
+const modelos = [
+  require("../banco-de-dados/rotas/fornecedores/ModeloTabelaFornecedor"),
+  require("../banco-de-dados/rotas/fornecedores/produtos/modeloTabelaProduto"),
+];
 
-ModeloTabela.sync()
-  .then(() => console.log("TABELA CRIADA COM SUCESSO !"))
-  .catch(console.log);
+async function criarTabelas() {
+  for (let contador = 0; contador < modelos.length; contador++) {
+    const modelo = modelos[contador];
+    await modelo.sync();
+  }
+}
+
+criarTabelas();
