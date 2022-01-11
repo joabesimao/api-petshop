@@ -3,13 +3,13 @@ const Tabela = require("./TabelaProduto");
 const Produto = require("./Produto");
 
 roteador.get("/", async (requisicao, resposta) => {
-  const produtos = await Tabela.listar(requisicao.params.idFornecedor);
+  const produtos = await Tabela.listar(requisicao.fornecedor.idFornecedor);
   resposta.send(JSON.stringify(produtos));
 });
 
 roteador.post("/", async (requisicao, resposta, proximo) => {
   try {
-    const idFornecedor = requisicao.params.idFornecedor;
+    const idFornecedor = requisicao.fornecedor.idFornecedor;
     const corpo = requisicao.body;
     const dados = Object.assign({}, corpo, { fornecedor: idFornecedor });
     const produto = new Produto(dados);
@@ -23,7 +23,7 @@ roteador.post("/", async (requisicao, resposta, proximo) => {
 
 roteador.delete("/:id", async (requisicao, resposta) => {
   const dados = {
-    id: requisicao.params.id,
+    id: requisicao.fornecedor.id,
     fornecedor: requisicao.params.idFornecedor,
   };
   const produto = new Produto(dados);
