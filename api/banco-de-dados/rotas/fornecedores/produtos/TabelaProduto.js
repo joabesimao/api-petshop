@@ -1,5 +1,6 @@
 const Modelo = require("./modeloTabelaProduto");
 const instancia = require("../../../../banco-de-dados");
+const NaoEncontrado = require("../../../../erros/NaoEncontrado");
 
 module.exports = {
   listar(idFornecedor) {
@@ -32,7 +33,7 @@ module.exports = {
       raw: true,
     });
     if (!encontrado) {
-      throw new Error("Produto nao foi encontrado!");
+      throw new NaoEncontrado("produto");
     }
     return encontrado;
   },
