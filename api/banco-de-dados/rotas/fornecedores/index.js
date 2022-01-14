@@ -6,19 +6,11 @@ const CampoInvalido = require("../../../erros/CampoInvalido");
 const SerializadorFornecedor =
   require("../../../Serializador").SerializadorFornecedor;
 
-roteador.options("/", (requisicao, resposta) => {
-  resposta.set("Access-Control-Allow-Methods", "GET,POST");
-  resposta.set("Access-Control-Allow-Headers", "Content-Type");
-  resposta.status(204);
-  resposta.end();
-});
-
 roteador.get("/", async (requisicao, resposta) => {
   const resultados = await TabelaFornecedor.listar();
   resposta.status(200);
   const serializador = new SerializadorFornecedor(
-    resposta.getHeader("Content-Type"),
-    ["empresa"]
+    resposta.getHeader("Content-Type")
   );
   resposta.send(serializador.serializar(resultados));
 });
@@ -30,8 +22,7 @@ roteador.post("/", async (requisicao, resposta, proximo) => {
     await fornecedor.criar();
     resposta.status(201);
     const serializador = new SerializadorFornecedor(
-      resposta.getHeader("Content-Type"),
-      ["empresa"]
+      resposta.getHeader("Content-Type")
     );
     resposta.send(serializador.serializar(fornecedor));
   } catch (erro) {
@@ -45,13 +36,6 @@ roteador.post("/", async (requisicao, resposta, proximo) => {
   }
 });
 
-roteador.options("/:idFornecedor", (requisicao, resposta) => {
-  resposta.set("Access-Control-Allow-Methods", "GET,PUT,DELETE");
-  resposta.set("Access-Control-Allow-Headers", "Content-Type");
-  resposta.status(204);
-  resposta.end();
-});
-
 roteador.get("/:idFornecedor", async (requisicao, resposta, proximo) => {
   try {
     const id = requisicao.params.idFornecedor;
@@ -60,7 +44,7 @@ roteador.get("/:idFornecedor", async (requisicao, resposta, proximo) => {
     resposta.status(200);
     const serializador = new SerializadorFornecedor(
       resposta.getHeader("Content-Type"),
-      ["email", "empresa", "dataCriacao", "dataAtualizacao", "versao"]
+      ["email", "dataCriacao", "dataAtualizacao", "versao"]
     );
     resposta.send(serializador.serializar(fornecedor));
   } catch (erro) {
